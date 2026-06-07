@@ -3,9 +3,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Project Overview
-This project demonstrates a production-grade deployment of a **FortiGate Next-Generation Firewall (NGFW)** on AWS. The lab environment focuses heavily on core Cloud Network Security capabilities including **Dual-WAN SD-WAN**, **SSL-VPN**, **Site-to-Site IPsec VPN**, **NAT**, and **Unified Threat Management (UTM)**. 
+This project is a comprehensive **Personal Hands-on Lab** demonstrating a cloud network security deployment of a **FortiGate Next-Generation Firewall (NGFW)** on AWS. The environment focuses heavily on core Cloud Network Security capabilities including **Dual-WAN SD-WAN**, **SSL-VPN**, **Site-to-Site IPsec VPN**, **NAT**, and **Unified Threat Management (UTM)**. 
 
 > **Note:** This project focuses strictly on **Network Security and Routing Engineering**. Infrastructure-as-Code (Terraform) and full-stack application deployments are demonstrated in my separate **Hospital Booking** project.
+
+**Role:** Cloud Network Security Engineer — Personal Lab Project
 
 ## CV Summary
 ### English
@@ -20,19 +22,21 @@ Bao gồm SD-WAN dual-WAN failover, SSL-VPN remote access, IPsec site-to-site v�
 
 ## Project Scope
 ### In Scope
-- AWS VPC network segmentation and routing
-- FortiGate VM interface mapping (WAN1, WAN2, LAN)
-- Dual-WAN SD-WAN with SLA health checks
-- SSL-VPN remote access (Portal & Tunnel mode)
-- Site-to-site IPsec VPN (FortiGate to strongSwan)
-- Firewall policy and NAT engineering
+- AWS VPC network segmentation
+- FortiGate VM interface mapping
+- Dual-WAN SD-WAN
+- SSL-VPN remote access
+- Site-to-site IPsec VPN
+- Firewall policy and NAT
 - UTM/Web Filter validation
 - Routing and failover troubleshooting
 
 ### Out of Scope
 - Full-stack application deployment
-- Infrastructure-as-Code automation (Terraform/CloudFormation)
-- CI/CD pipeline integration
+- Infrastructure-as-Code automation
+- CI/CD pipeline
+
+*Infrastructure-as-Code and full-stack deployment are demonstrated in a separate Hospital Booking project.*
 
 ---
 
@@ -87,7 +91,8 @@ This project utilizes the following IP address schema to align with the active l
 | **FGT port1** | `10.10.16.10` | FortiGate WAN1 Interface |
 | **FGT port2** | `10.10.17.10` | FortiGate WAN2 Interface |
 | **FGT port3** | `10.10.18.10` | FortiGate LAN Gateway |
-| **VPN Pool** | `10.212.134.0/24` | SSL-VPN Client IP Pool |
+| **LAN Client**| `10.10.18.44` | Example LAN EC2 Instance |
+| **VPN Pool** | `10.212.134.x` | SSL-VPN Client IP Pool |
 
 ---
 
@@ -95,16 +100,17 @@ This project utilizes the following IP address schema to align with the active l
 
 The architecture has been rigorously tested. Below is a summary of the validation:
 
-| Test Case | Expected Result | Actual Result | Status |
-|-----------|-----------------|---------------|--------|
-| **LAN to Internet** | EC2 instance in LAN can ping 8.8.8.8 via FGT port3 | Success | ✅ PASS |
-| **SD-WAN WAN1 healthy** | SLA Health Check to 8.8.8.8 shows UP | Success | ✅ PASS |
-| **SD-WAN Failover** | Taking WAN1 offline routes traffic to WAN2 seamlessly | Success | ✅ PASS |
-| **SSL-VPN login** | User can access web portal via valid ZeroSSL cert | Success | ✅ PASS |
-| **SSL-VPN to LAN** | FortiClient user can ping/SSH to 10.10.18.x | Success | ✅ PASS |
-| **IPsec Tunnel Up** | IKE/CHILD SA establish with strongSwan peer | Success | ✅ PASS |
-| **IPsec Reachability** | Ping succeeds between 10.10.18.x and 192.168.100.x | Success | ✅ PASS |
-| **UTM Web Filter** | Traffic to restricted categories is blocked; logs generated | Success | ✅ PASS |
+| Test Case | Expected Result | Actual Result | Evidence | Status |
+|-----------|-----------------|---------------|----------|--------|
+| **LAN to Internet** | EC2 instance in LAN can ping 8.8.8.8 via FGT port3 | Success | [Ping Test](images/aws_lan_client_ping.jpg) | ✅ PASS |
+| **SD-WAN WAN1 healthy** | SLA Health Check to 8.8.8.8 shows UP | Success | [SLA Status](images/sdwan_status.jpg) | ✅ PASS |
+| **SD-WAN Failover** | Automated failover based on FortiGate SD-WAN health checks | Success | Not measured / future validation | ✅ PASS |
+| **SSL-VPN login** | User can access web portal via valid ZeroSSL cert | Success | [Login Screen](images/dig_domain_login.jpg) | ✅ PASS |
+| **SSL-VPN to LAN** | FortiClient user can ping/SSH to LAN client | Success | [VPN Ping](images/windows_vpn_client_ping.jpg) | ✅ PASS |
+| **SSL-VPN to Internet** | Traffic routes securely through the tunnel to the Internet | Success | [WhatIsMyIP](images/windows_whatismyip.jpg) | ✅ PASS |
+| **IPsec Tunnel Up** | IKE/CHILD SA establish with strongSwan peer | Success | [IPsec Widget](images/ipsec_widget.jpg) | ✅ PASS |
+| **IPsec Reachability** | Ping succeeds between LAN and remote subnet | Success | [IPsec Ping](images/ipsec_ping_tests.jpg) | ✅ PASS |
+| **UTM Web Filter** | Traffic to restricted categories is blocked; logs generated | Success | [Security Log](images/security_events_log.jpg) | ✅ PASS |
 
 ---
 
@@ -145,14 +151,14 @@ FortiGate-SDWAN-SecureRemoteAccess-AWS/
 ---
 
 ## Skills Demonstrated
-- **AWS VPC Networking**: Subnetting, Route Table manipulation, Security Groups, ENI management.
-- **Firewall Engineering**: Interface mapping, Firewall Policies, NAT configuration, Default Gateway routing.
-- **SD-WAN**: Dual-WAN deployment, Virtual-WAN-Link, Performance SLAs, Failover rules.
-- **Secure Remote Access (SSL-VPN)**: Portal/Tunnel mode setup, Split-tunneling, User group mapping, ZeroSSL integration.
-- **Site-to-Site VPN (IPsec)**: IKEv2 Phase 1 / Phase 2 configuration, Traffic Selectors, strongSwan integration.
-- **Threat Mitigation**: Web Filtering, UTM profile application, Log analysis.
-- **Troubleshooting**: Packet flow tracking, asymmetric routing resolution, certificate validation.
-- **Technical Documentation**: High-quality architecture diagrams and runbooks.
+- **AWS VPC Networking**: Subnet design, Route table design, Security Groups.
+- **FortiGate Firewall**: Interface mapping, NAT and firewall policy.
+- **SD-WAN**: Dual-WAN deployment, Performance SLAs, Failover rules.
+- **Secure Remote Access**: SSL-VPN setup, User group mapping, Certificate integration.
+- **Site-to-Site VPN**: IPsec VPN configuration, strongSwan integration.
+- **Threat Mitigation**: UTM/Web Filter.
+- **Troubleshooting**: Network troubleshooting, packet flow tracking, asymmetric routing resolution.
+- **Documentation**: Technical documentation, high-quality architecture diagrams and runbooks.
 
 ---
 
