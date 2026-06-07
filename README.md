@@ -11,10 +11,14 @@ This project is a comprehensive **Personal Hands-on Lab** demonstrating a cloud 
 
 ## CV Summary
 ### English
+
+
 **FortiGate SD-WAN & Secure Remote Access on AWS**
 Designed and validated a cloud network security lab using FortiGate VM on AWS, implementing dual-WAN SD-WAN failover, SSL-VPN remote access, site-to-site IPsec VPN to strongSwan, protected LAN routing, firewall policies, NAT, ZeroSSL certificate integration, and UTM/Web Filter validation.
 
 ### Vietnamese
+
+
 **Triển khai mô hình Cloud Network Security với FortiGate trên AWS**
 Bao gồm SD-WAN dual-WAN failover, SSL-VPN remote access, IPsec site-to-site với strongSwan, protected LAN routing, firewall policy, NAT, ZeroSSL certificate và kiểm thử UTM/Web Filter log.
 
