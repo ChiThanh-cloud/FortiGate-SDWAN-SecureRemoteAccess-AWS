@@ -1,0 +1,127 @@
+<svg width="900" viewBox="0 0 900 820" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="900" height="820" fill="#FAFAFA" rx="0"/>
+
+  <!-- ── INTERNET ZONE ── -->
+  <rect x="40" y="24" width="820" height="60" rx="12" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+  <text x="450" y="50" text-anchor="middle" font-size="14" font-weight="600" fill="#2C2C2A">Internet</text>
+  <text x="450" y="70" text-anchor="middle" font-size="11" fill="#5F5E5A">Public zone</text>
+
+  <!-- ISP arrows -->
+  <line x1="220" y1="84" x2="220" y2="136" stroke="#378ADD" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <text x="220" y="118" text-anchor="middle" font-size="11" fill="#185FA5">ISP 1</text>
+  <line x1="680" y1="84" x2="680" y2="136" stroke="#378ADD" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+  <text x="680" y="118" text-anchor="middle" font-size="11" fill="#185FA5">ISP 2</text>
+
+  <!-- ── AWS VPC OUTER ── -->
+  <rect x="40" y="140" width="820" height="560" rx="16" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+  <text x="68" y="168" font-size="13" font-weight="600" fill="#085041">AWS VPC — 10.10.0.0/16</text>
+
+  <!-- WAN1 subnet -->
+  <rect x="64" y="180" width="240" height="84" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+  <text x="184" y="211" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">WAN1 subnet</text>
+  <text x="184" y="231" text-anchor="middle" font-size="11" fill="#185FA5">10.10.16.0/24</text>
+  <text x="184" y="249" text-anchor="middle" font-size="11" fill="#185FA5">eth0 (port1)</text>
+
+  <!-- WAN2 subnet -->
+  <rect x="596" y="180" width="240" height="84" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+  <text x="716" y="211" text-anchor="middle" font-size="13" font-weight="600" fill="#0C447C">WAN2 subnet</text>
+  <text x="716" y="231" text-anchor="middle" font-size="11" fill="#185FA5">10.10.17.0/24</text>
+  <text x="716" y="249" text-anchor="middle" font-size="11" fill="#185FA5">eth1 (port2)</text>
+
+  <!-- SD-WAN SLA labels -->
+  <text x="184" y="285" text-anchor="middle" font-size="10" fill="#5F5E5A">SLA health check</text>
+  <text x="716" y="285" text-anchor="middle" font-size="10" fill="#5F5E5A">auto failover</text>
+
+  <!-- WAN1 → FortiGate -->
+  <path d="M184 264 L184 305 L340 360" fill="none" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- WAN2 → FortiGate -->
+  <path d="M716 264 L716 305 L560 360" fill="none" stroke="#185FA5" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- SD-WAN badge -->
+  <rect x="310" y="298" width="180" height="22" rx="4" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="400" y="313" text-anchor="middle" font-size="10" font-weight="600" fill="#3C3489">SD-WAN virtual-wan-link</text>
+
+  <!-- ── FORTIGATE VM (center) ── -->
+  <rect x="270" y="330" width="260" height="96" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+  <text x="400" y="358" text-anchor="middle" font-size="15" font-weight="700" fill="#26215C">FortiGate VM</text>
+  <text x="400" y="378" text-anchor="middle" font-size="11" fill="#3C3489">NGFW · SD-WAN · SSL-VPN · IPsec</text>
+  <text x="400" y="396" text-anchor="middle" font-size="11" fill="#534AB7">Management: port 8443</text>
+  <text x="400" y="413" text-anchor="middle" font-size="11" fill="#534AB7">SSL-VPN: port 443 · ZeroSSL cert</text>
+
+  <!-- FortiGate → LAN arrow -->
+  <line x1="400" y1="426" x2="400" y2="490" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+  <text x="416" y="462" font-size="10" fill="#27500A">eth2 · LAN GW</text>
+  <text x="416" y="474" font-size="10" fill="#27500A">10.10.18.10</text>
+
+  <!-- ── LAN subnet ── -->
+  <rect x="260" y="490" width="280" height="80" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+  <text x="400" y="522" text-anchor="middle" font-size="13" font-weight="600" fill="#27500A">LAN subnet</text>
+  <text x="400" y="542" text-anchor="middle" font-size="11" fill="#3B6D11">10.10.18.0/24</text>
+  <text x="400" y="558" text-anchor="middle" font-size="11" fill="#3B6D11">Firewall policy · Web filter · NAT</text>
+
+  <!-- LAN → EC2 -->
+  <line x1="400" y1="570" x2="400" y2="618" stroke="#5F5E5A" stroke-width="1" marker-end="url(#arr)" fill="none"/>
+
+  <!-- ── Internal EC2 ── -->
+  <rect x="300" y="618" width="200" height="56" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+  <text x="400" y="643" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2C2A">Internal EC2</text>
+  <text x="400" y="661" text-anchor="middle" font-size="11" fill="#5F5E5A">workloads / servers</text>
+
+  <!-- Route table box (bottom right inside VPC) -->
+  <rect x="620" y="618" width="200" height="56" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+  <text x="720" y="643" text-anchor="middle" font-size="13" font-weight="600" fill="#2C2C2A">Route tables</text>
+  <text x="720" y="661" text-anchor="middle" font-size="11" fill="#5F5E5A">+ Security groups</text>
+
+  <!-- ── SSL-VPN CLIENTS (outside VPC, left) ── -->
+  <rect x="40" y="400" width="194" height="86" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/>
+  <text x="137" y="426" text-anchor="middle" font-size="13" font-weight="600" fill="#712B13">Remote clients</text>
+  <text x="137" y="446" text-anchor="middle" font-size="11" fill="#993C1D">FortiClient iOS</text>
+  <text x="137" y="462" text-anchor="middle" font-size="11" fill="#993C1D">FortiClient Windows</text>
+  <text x="137" y="476" text-anchor="middle" font-size="10" fill="#D85A30">vpn.nguyenchithanhit.id.vn</text>
+
+  <!-- SSL-VPN arrow: clients → FortiGate -->
+  <path d="M234 443 L270 390" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr)"/>
+  <text x="218" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#993C1D">SSL-VPN</text>
+  <text x="218" y="381" text-anchor="middle" font-size="10" fill="#993C1D">Full / split tunnel</text>
+
+  <!-- ── STRONGSWAN VPS (outside VPC, right) ── -->
+  <rect x="666" y="400" width="194" height="86" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+  <text x="763" y="426" text-anchor="middle" font-size="13" font-weight="600" fill="#633806">strongSwan VPS</text>
+  <text x="763" y="446" text-anchor="middle" font-size="11" fill="#854F0B">External Linux VPN</text>
+  <text x="763" y="462" text-anchor="middle" font-size="11" fill="#854F0B">Site-to-site peer</text>
+  <text x="763" y="476" text-anchor="middle" font-size="10" fill="#BA7517">IKEv2 · AES-256 · SHA-256</text>
+
+  <!-- IPsec arrow: FortiGate ↔ strongSwan -->
+  <path d="M530 385 L666 443" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr)"/>
+  <text x="630" y="368" text-anchor="middle" font-size="10" font-weight="600" fill="#854F0B">IPsec tunnel</text>
+  <text x="630" y="381" text-anchor="middle" font-size="10" fill="#854F0B">site-to-site</text>
+
+  <!-- ── LEGEND ── -->
+  <rect x="40" y="724" width="820" height="72" rx="8" fill="none" stroke="#D3D1C7" stroke-width="1"/>
+  <text x="64" y="744" font-size="11" font-weight="600" fill="#2C2C2A">Legend</text>
+
+  <line x1="64" y1="762" x2="110" y2="762" stroke="#378ADD" stroke-width="1.5" marker-end="url(#arr)" fill="none"/>
+  <text x="118" y="766" font-size="11" fill="#2C2C2A">Network traffic</text>
+
+  <line x1="240" y1="762" x2="286" y2="762" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr)" fill="none"/>
+  <text x="294" y="766" font-size="11" fill="#2C2C2A">SSL-VPN / IPsec (encrypted)</text>
+
+  <rect x="520" y="754" width="12" height="12" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="1"/>
+  <text x="540" y="766" font-size="11" fill="#2C2C2A">FortiGate</text>
+
+  <rect x="630" y="754" width="12" height="12" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
+  <text x="650" y="766" font-size="11" fill="#2C2C2A">AWS subnet</text>
+
+  <rect x="740" y="754" width="12" height="12" rx="2" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
+  <text x="760" y="766" font-size="11" fill="#2C2C2A">LAN / internal</text>
+
+  <!-- defs arrow marker -->
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+</svg>
