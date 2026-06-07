@@ -46,6 +46,8 @@ Bao gá»“m SD-WAN dual-WAN failover, SSL-VPN remote access, IPsec site-to-site vá
 
 ## Architecture Overview
 
+![Architecture](assets/architecture.svg)
+
 ```mermaid
 graph TD
     subgraph AWS Cloud [AWS Cloud Region]
