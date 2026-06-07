@@ -1,0 +1,29 @@
+config vpn ssl web portal
+    edit "full-access"
+        set tunnel-mode enable
+        set ip-pools "SSLVPN_TUNNEL_ADDR1"
+        set split-tunneling disable
+    next
+    edit "tunnel-access"
+        set tunnel-mode enable
+        set ip-pools "SSLVPN_TUNNEL_ADDR1"
+        set split-tunneling enable
+        set split-tunneling-routing-address "LAN_10.10.18.0"
+    next
+end
+
+config vpn ssl settings
+    set servercert "<REDACTED_CERTIFICATE>"
+    set tunnel-ip-pools "SSLVPN_TUNNEL_ADDR1"
+    set tunnel-ipv6-pools "SSLVPN_TUNNEL_IPv6_ADDR1"
+    set source-interface "port1" "port2"
+    set source-address "all"
+    set source-address6 "all"
+    set default-portal "full-access"
+    config authentication-rule
+        edit 1
+            set groups "VPN_Users"
+            set portal "tunnel-access"
+        next
+    end
+end

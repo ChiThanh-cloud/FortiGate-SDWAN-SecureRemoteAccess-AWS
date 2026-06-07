@@ -1,0 +1,63 @@
+config firewall policy
+    edit 1
+        set name "LAN_to_Internet"
+        set srcintf "port3"
+        set dstintf "virtual-wan-link"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set utm-status enable
+        set webfilter-profile "default"
+        set logtraffic all
+        set nat enable
+    next
+    edit 2
+        set name "SSLVPN_to_LAN"
+        set srcintf "ssl.root"
+        set dstintf "port3"
+        set srcaddr "SSLVPN_TUNNEL_ADDR1"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set groups "VPN_Users"
+    next
+    edit 3
+        set name "SSLVPN_to_Internet"
+        set srcintf "ssl.root"
+        set dstintf "virtual-wan-link"
+        set srcaddr "SSLVPN_TUNNEL_ADDR1"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set groups "VPN_Users"
+        set nat enable
+    next
+    edit 4
+        set name "VPN_to_LAN"
+        set srcintf "VPN_Tunnel"
+        set dstintf "port3"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+    next
+    edit 5
+        set name "LAN_to_VPN"
+        set srcintf "port3"
+        set dstintf "VPN_Tunnel"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+    next
+end

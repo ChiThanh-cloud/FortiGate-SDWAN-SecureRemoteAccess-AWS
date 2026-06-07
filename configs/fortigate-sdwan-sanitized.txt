@@ -1,0 +1,46 @@
+config system sdwan
+    set status enable
+    config zone
+        edit "virtual-wan-link"
+        next
+    end
+    config members
+        edit 1
+            set interface "port1"
+            set zone "virtual-wan-link"
+            set gateway 10.10.16.1
+        next
+        edit 2
+            set interface "port2"
+            set zone "virtual-wan-link"
+            set gateway 10.10.17.1
+        next
+    end
+    config health-check
+        edit "SLA_8.8.8.8"
+            set server "8.8.8.8"
+            set members 1 2
+            config sla
+                edit 1
+                    set latency-threshold 200
+                    set jitter-threshold 50
+                    set packetloss-threshold 5
+                next
+            end
+        next
+    end
+    config service
+        edit 1
+            set name "SDWAN_Rule"
+            set mode sla
+            set dst "all"
+            set src "all"
+            config sla
+                edit "SLA_8.8.8.8"
+                    set id 1
+                next
+            end
+            set priority-members 1 2
+        next
+    end
+end
