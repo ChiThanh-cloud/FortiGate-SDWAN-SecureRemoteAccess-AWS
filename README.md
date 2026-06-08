@@ -104,13 +104,13 @@ This project utilizes the following IP address schema to align with the active l
 
 ## Test Results
 
-The architecture has been rigorously tested. Below is a summary of the validation:
+The architecture has been validated in a hands-on lab. Below is a summary of the validation:
 
 | Test Case | Expected Result | Actual Result | Evidence | Status |
 |-----------|-----------------|---------------|----------|--------|
 | **LAN to Internet** | EC2 instance in LAN can ping 8.8.8.8 via FGT port3 | Success | [Ping Test](images/aws_lan_client_ping.jpg) | ✅ PASS |
 | **SD-WAN WAN1 healthy** | SLA Health Check to 8.8.8.8 shows UP | Success | [SLA Status](images/sdwan_status.jpg)<br>[Traffic Dist.](images/sdwan_traffic_distribution.jpg) | ✅ PASS |
-| **SD-WAN Failover** | Automated failover based on FortiGate SD-WAN health checks | Success | [Failover Status](images/sdwan_failover_status.jpg)<br>[Client Ping Failover](images/lan_client_failover_test.jpg) | ✅ PASS |
+| **SD-WAN Failover** | Failover recovery validated (not claiming zero downtime) | Success | [Failover Status](images/sdwan_failover_status.jpg)<br>[Client Ping Failover](images/lan_client_failover_test.jpg) | ✅ PASS |
 | **SSL-VPN login** | User can access web portal via valid ZeroSSL cert | Success | [Login Screen](images/dig_domain_login.jpg) | ✅ PASS |
 | **SSL-VPN to LAN** | FortiClient user can ping/SSH to LAN client | Success | [VPN Ping](images/windows_vpn_client_ping.jpg) | ✅ PASS |
 | **SSL-VPN to Internet** | Traffic routes securely through the tunnel to the Internet | Success | [WhatIsMyIP](images/windows_whatismyip.jpg) | ✅ PASS |

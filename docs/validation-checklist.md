@@ -22,7 +22,10 @@ This checklist is used to validate the operational status of the FortiGate SD-WA
 - [x] **SD-WAN Members**: `port1` and `port2` are members of the virtual-wan-link.
 - [x] **SLA Health Check**: Ping to `8.8.8.8` configured on both WANs. Status is UP.
 - [x] **SD-WAN Rules**: Traffic steers correctly according to defined volume/latency logic.
-- [x] **Failover Test**: Taking down WAN1 successfully moves all sessions to WAN2 with no drop.
+- [x] **Failover Test**: Taking down WAN1 successfully moves all sessions to WAN2.
+  - exact convergence time not measured
+  - zero packet loss not claimed
+  - brief timeout observed during transition
 
 ## 4. SSL-VPN Validation
 - [x] **Portal Access**: Web portal accessible via `https://<PUBLIC_IP>:443` without conflicting with admin GUI (port 8443).
